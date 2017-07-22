@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="{{ app()->getLocale() }}">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Laravel</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+          integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
+    <style>
+        #username:hover {
+            background: transparent;
+        }
+
+        .btn-primary, .btn-primary:hover {
+            background-color: #736EFE;
+            border-color: #736EFE;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="container">
+    <nav class="navbar navbar-toggleable-md navbar-inverse" style="background: #736EFE">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
+                aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+            <h1 class="navbar-brand mb-0">SIGNOLINGO</h1>
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+
+            </ul>
+            <h1 class="navbar-brand my-2 my-lg-0">
+                USUÁRIO
+            </h1>
+        </div>
+    </nav>
+</div>
+<br>
+<br>
+<div class="container">
+    <h1 style="text-align: center; color: #736EFE;">Números</h1>
+    <br><br>
+    <div id="pergunta" class="row">
+        <div class="col-xs-12 col-md-4 offset-md-4 card text-center" v-for="(pergunta, indice) in perguntas">
+            <div v-show="indice === indice_pergunta">
+                <img class="card-img-top" v-bind:src="pergunta.imagem" alt="Card image cap">
+                <div class="card-block">
+                    <p class="card-text">
+                        <button class="btn btn-primary" v-on:click="proxima">1</button>
+                        <button class="btn btn-primary" v-on:click="proxima">2</button>
+                        <button class="btn btn-primary" v-on:click="proxima">3</button>
+                        <button class="btn btn-primary" v-on:click="proxima">4</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
+        integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+        integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+        integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+        crossorigin="anonymous"></script>
+<script src="https://unpkg.com/vue"></script>
+
+<script>
+
+    var image = new Vue({
+        el: "#pergunta",
+        data: {
+            indice_pergunta: Math.floor(Math.random() * 9),
+            perguntas_respondidas: 1,
+            perguntas: [
+                {imagem: "assets/images/numeros/0.jpg", resposta: "0", respondida: false},
+                {imagem: "assets/images/numeros/1.jpg", resposta: "1", respondida: false},
+                {imagem: "assets/images/numeros/2.jpg", resposta: "2", respondida: false},
+                {imagem: "assets/images/numeros/3.jpg", resposta: "3", respondida: false},
+                {imagem: "assets/images/numeros/4.jpg", resposta: "4", respondida: false},
+                {imagem: "assets/images/numeros/5.jpg", resposta: "5", respondida: false},
+                {imagem: "assets/images/numeros/6.jpg", resposta: "6", respondida: false},
+                {imagem: "assets/images/numeros/7.jpg", resposta: "7", respondida: false},
+                {imagem: "assets/images/numeros/8.jpg", resposta: "8", respondida: false},
+                {imagem: "assets/images/numeros/9.jpg", resposta: "9", respondida: false}
+            ]
+        },
+        methods: {
+            proxima: function () {
+                if (this.perguntas_respondidas == 10) {
+                    alert("Parabéns, você terminou a lição");
+                    window.location.href = "index.html";
+
+                } else {
+                    this.perguntas_respondidas ++;
+                    var encontrou = false;
+                    while (!encontrou) {
+                        var indice = Math.floor(Math.random() * 9);
+                        if (!this.perguntas.respondida) {
+                            this.indice_pergunta = indice;
+                            encontrou = true;
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+</script>
+</body>
+</html>
