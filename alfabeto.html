@@ -38,9 +38,9 @@
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 
             </ul>
-            <h1 class="navbar-brand my-2 my-lg-0">
-                USUÁRIO
-            </h1>
+            <a class="navbar-brand my-2 my-lg-0" href="index.html">
+                Voltar para o menu
+            </a>
         </div>
     </nav>
 </div>
@@ -79,7 +79,8 @@
     var image = new Vue({
         el: "#pergunta",
         data: {
-            indice_pergunta: Math.floor(Math.random() * 10),
+            indice_pergunta: 2,
+            indices: [9, 15, 22, 3, 10, 16, 23, 4, 11, 17, 24, 5, 12, 18, 25, 6, 13, 19, 0, 7, 14, 20, 1, 8, 21],
             perguntas_respondidas: 1,
             perguntas: [
                 {imagem: "assets/images/alfabeto/a.png", resposta: "a", respondida: false, alternativas: ["a", "g", "t", "n"]},
@@ -112,21 +113,14 @@
         },
         methods: {
             proxima: function () {
-                if (this.perguntas_respondidas === 26) {
+                if (this.indices.length === 0) {
                     alert("Parabéns, você terminou a lição");
                     window.location.href = "index.html";
 
                 } else {
                     this.perguntas[this.indice_pergunta].respondida = true;
-                    this.perguntas_respondidas ++;
-                    var encontrou = false;
-                    while (!encontrou) {
-                        var indice = Math.floor(Math.random() * 10);
-                        if (!this.perguntas[indice].respondida) {
-                            this.indice_pergunta = indice;
-                            encontrou = true;
-                        }
-                    }
+                    this.perguntas_respondidas++;
+                    this.indice_pergunta = this.indices.pop();
                 }
             },
             checarResposta: function (resposta_marcada) {
@@ -138,6 +132,13 @@
                 this.proxima();
             }
         }
+//        computed: {
+//            naoRespondidas: function () {
+//                return this.perguntas.filter(function (pergunta) {
+//                    return pergunta.respondida === false;
+//                });
+//            }
+//        }
     });
 
 </script>
