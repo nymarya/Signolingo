@@ -104,11 +104,14 @@
                     window.location.href = "index.html";
 
                 } else {
+                    this.perguntas[this.indice_pergunta].respondida = true;
+                    console.log("respondida numero: " + this.indice_pergunta);
                     this.perguntas_respondidas ++;
                     var encontrou = false;
                     while (!encontrou) {
                         var indice = Math.floor(Math.random() * 9);
-                        if (!this.perguntas.respondida) {
+                        console.log("indice random = " + indice);
+                        if (this.perguntas[indice].respondida === false) {
                             this.indice_pergunta = indice;
                             encontrou = true;
                         }

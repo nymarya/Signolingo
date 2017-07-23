@@ -72,9 +72,58 @@
 <script>
 
     var image = new Vue({
-        el: "#image-slider",
+        el: "#pergunta",
         data: {
-            imagens: "a"
+            indice_pergunta: Math.floor(Math.random() * 10),
+            perguntas_respondidas: 1,
+            perguntas: [
+                {imagem: "assets/images/alfabeto/a.png", resposta: "a", respondida: false},
+                {imagem: "assets/images/alfabeto/b.png", resposta: "b", respondida: false},
+                {imagem: "assets/images/alfabeto/c.png", resposta: "c", respondida: false},
+                {imagem: "assets/images/alfabeto/d.png", resposta: "d", respondida: false},
+                {imagem: "assets/images/alfabeto/e.png", resposta: "e", respondida: false},
+                {imagem: "assets/images/alfabeto/f.png", resposta: "f", respondida: false},
+                {imagem: "assets/images/alfabeto/g.png", resposta: "g", respondida: false},
+                {imagem: "assets/images/alfabeto/h.png", resposta: "h", respondida: false},
+                {imagem: "assets/images/alfabeto/i.png", resposta: "i", respondida: false},
+                {imagem: "assets/images/alfabeto/j.png", resposta: "j", respondida: false},
+                {imagem: "assets/images/alfabeto/k.png", resposta: "k", respondida: false},
+                {imagem: "assets/images/alfabeto/l.png", resposta: "l", respondida: false},
+                {imagem: "assets/images/alfabeto/m.png", resposta: "m", respondida: false},
+                {imagem: "assets/images/alfabeto/n.png", resposta: "n", respondida: false},
+                {imagem: "assets/images/alfabeto/o.png", resposta: "o", respondida: false},
+                {imagem: "assets/images/alfabeto/p.png", resposta: "p", respondida: false},
+                {imagem: "assets/images/alfabeto/q.png", resposta: "q", respondida: false},
+                {imagem: "assets/images/alfabeto/r.png", resposta: "r", respondida: false},
+                {imagem: "assets/images/alfabeto/s.png", resposta: "s", respondida: false},
+                {imagem: "assets/images/alfabeto/t.png", resposta: "t", respondida: false},
+                {imagem: "assets/images/alfabeto/u.png", resposta: "u", respondida: false},
+                {imagem: "assets/images/alfabeto/v.png", resposta: "v", respondida: false},
+                {imagem: "assets/images/alfabeto/w.png", resposta: "w", respondida: false},
+                {imagem: "assets/images/alfabeto/x.png", resposta: "x", respondida: false},
+                {imagem: "assets/images/alfabeto/y.png", resposta: "y", respondida: false},
+                {imagem: "assets/images/alfabeto/z.png", resposta: "z", respondida: false}
+            ]
+        },
+        methods: {
+            proxima: function () {
+                if (this.perguntas_respondidas == 26) {
+                    alert("Parabéns, você terminou a lição");
+                    window.location.href = "index.html";
+
+                } else {
+                    this.perguntas[this.indice_pergunta].respondida = true;
+                    this.perguntas_respondidas ++;
+                    var encontrou = false;
+                    while (!encontrou) {
+                        var indice = Math.floor(Math.random() * 10);
+                        if (!this.perguntas[indice].respondida) {
+                            this.indice_pergunta = indice;
+                            encontrou = true;
+                        }
+                    }
+                }
+            }
         }
     });
 
