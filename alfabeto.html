@@ -49,12 +49,17 @@
 <div class="container">
     <h1 style="text-align: center; color: #736EFE;">Alfabeto</h1>
     <br><br>
-    <div class="row">
-        <div class="col-xs-12 col-md-3"></div>
-        <div class="col-xs-12 col-md-6" id="image-slider">
-
+    <div id="pergunta" class="row">
+        <div class="col-xs-12 col-md-6 offset-md-3 card text-center" v-for="(pergunta, indice) in perguntas">
+            <div v-show="indice === indice_pergunta">
+                <img class="card-img-top" v-bind:src="pergunta.imagem" alt="Card image cap" style="height: 100px; width: auto;">
+                <div class="card-block">
+                    <p class="card-text">
+                        <button  v-for="alternativa in pergunta.alternativas" class="btn btn-primary" v-on:click="checarResposta(alternativa)">{{ alternativa }}</button>
+                    </p>
+                </div>
+            </div>
         </div>
-        <div class="col-xs-12 col-md-3"></div>
     </div>
 </div>
 
@@ -77,37 +82,37 @@
             indice_pergunta: Math.floor(Math.random() * 10),
             perguntas_respondidas: 1,
             perguntas: [
-                {imagem: "assets/images/alfabeto/a.png", resposta: "a", respondida: false},
-                {imagem: "assets/images/alfabeto/b.png", resposta: "b", respondida: false},
-                {imagem: "assets/images/alfabeto/c.png", resposta: "c", respondida: false},
-                {imagem: "assets/images/alfabeto/d.png", resposta: "d", respondida: false},
-                {imagem: "assets/images/alfabeto/e.png", resposta: "e", respondida: false},
-                {imagem: "assets/images/alfabeto/f.png", resposta: "f", respondida: false},
-                {imagem: "assets/images/alfabeto/g.png", resposta: "g", respondida: false},
-                {imagem: "assets/images/alfabeto/h.png", resposta: "h", respondida: false},
-                {imagem: "assets/images/alfabeto/i.png", resposta: "i", respondida: false},
-                {imagem: "assets/images/alfabeto/j.png", resposta: "j", respondida: false},
-                {imagem: "assets/images/alfabeto/k.png", resposta: "k", respondida: false},
-                {imagem: "assets/images/alfabeto/l.png", resposta: "l", respondida: false},
-                {imagem: "assets/images/alfabeto/m.png", resposta: "m", respondida: false},
-                {imagem: "assets/images/alfabeto/n.png", resposta: "n", respondida: false},
-                {imagem: "assets/images/alfabeto/o.png", resposta: "o", respondida: false},
-                {imagem: "assets/images/alfabeto/p.png", resposta: "p", respondida: false},
-                {imagem: "assets/images/alfabeto/q.png", resposta: "q", respondida: false},
-                {imagem: "assets/images/alfabeto/r.png", resposta: "r", respondida: false},
-                {imagem: "assets/images/alfabeto/s.png", resposta: "s", respondida: false},
-                {imagem: "assets/images/alfabeto/t.png", resposta: "t", respondida: false},
-                {imagem: "assets/images/alfabeto/u.png", resposta: "u", respondida: false},
-                {imagem: "assets/images/alfabeto/v.png", resposta: "v", respondida: false},
-                {imagem: "assets/images/alfabeto/w.png", resposta: "w", respondida: false},
-                {imagem: "assets/images/alfabeto/x.png", resposta: "x", respondida: false},
-                {imagem: "assets/images/alfabeto/y.png", resposta: "y", respondida: false},
-                {imagem: "assets/images/alfabeto/z.png", resposta: "z", respondida: false}
+                {imagem: "assets/images/alfabeto/a.png", resposta: "a", respondida: false, alternativas: ["a", "g", "t", "n"]},
+                {imagem: "assets/images/alfabeto/b.png", resposta: "b", respondida: false, alternativas: ["o", "b", "h", "u"]},
+                {imagem: "assets/images/alfabeto/c.png", resposta: "c", respondida: false, alternativas: ["v", "p", "c", "i"]},
+                {imagem: "assets/images/alfabeto/d.png", resposta: "d", respondida: false, alternativas: ["j", "w", "q", "d"]},
+                {imagem: "assets/images/alfabeto/e.png", resposta: "e", respondida: false, alternativas: ["e", "k", "x", "r"]},
+                {imagem: "assets/images/alfabeto/f.png", resposta: "f", respondida: false, alternativas: ["s", "f", "l", "y"]},
+                {imagem: "assets/images/alfabeto/g.png", resposta: "g", respondida: false, alternativas: ["z", "t", "g", "m"]},
+                {imagem: "assets/images/alfabeto/h.png", resposta: "h", respondida: false, alternativas: ["n", "a", "u", "h"]},
+                {imagem: "assets/images/alfabeto/i.png", resposta: "i", respondida: false, alternativas: ["i", "o", "b", "v"]},
+                {imagem: "assets/images/alfabeto/j.png", resposta: "j", respondida: false, alternativas: ["w", "j", "p", "c"]},
+                {imagem: "assets/images/alfabeto/k.png", resposta: "k", respondida: false, alternativas: ["d", "x", "k", "q"]},
+                {imagem: "assets/images/alfabeto/l.png", resposta: "l", respondida: false, alternativas: ["r", "e", "y", "l"]},
+                {imagem: "assets/images/alfabeto/m.png", resposta: "m", respondida: false, alternativas: ["m", "s", "f", "z"]},
+                {imagem: "assets/images/alfabeto/n.png", resposta: "n", respondida: false, alternativas: ["a", "n", "t", "g"]},
+                {imagem: "assets/images/alfabeto/o.png", resposta: "o", respondida: false, alternativas: ["h", "u", "o", "b"]},
+                {imagem: "assets/images/alfabeto/p.png", resposta: "p", respondida: false, alternativas: ["c", "i", "v", "p"]},
+                {imagem: "assets/images/alfabeto/q.png", resposta: "q", respondida: false, alternativas: ["q", "d", "j", "w"]},
+                {imagem: "assets/images/alfabeto/r.png", resposta: "r", respondida: false, alternativas: ["x", "r", "e", "k"]},
+                {imagem: "assets/images/alfabeto/s.png", resposta: "s", respondida: false, alternativas: ["l", "y", "s", "f"]},
+                {imagem: "assets/images/alfabeto/t.png", resposta: "t", respondida: false, alternativas: ["g", "m", "z", "t"]},
+                {imagem: "assets/images/alfabeto/u.png", resposta: "u", respondida: false, alternativas: ["u", "h", "n", "a"]},
+                {imagem: "assets/images/alfabeto/v.png", resposta: "v", respondida: false, alternativas: ["b", "v", "i", "o"]},
+                {imagem: "assets/images/alfabeto/w.png", resposta: "w", respondida: false, alternativas: ["p", "c", "w", "j"]},
+                {imagem: "assets/images/alfabeto/x.png", resposta: "x", respondida: false, alternativas: ["k", "q", "d", "x"]},
+                {imagem: "assets/images/alfabeto/y.png", resposta: "y", respondida: false, alternativas: ["y", "l", "r", "e"]},
+                {imagem: "assets/images/alfabeto/z.png", resposta: "z", respondida: false, alternativas: ["f", "z", "m", "s"]}
             ]
         },
         methods: {
             proxima: function () {
-                if (this.perguntas_respondidas == 26) {
+                if (this.perguntas_respondidas === 26) {
                     alert("Parabéns, você terminou a lição");
                     window.location.href = "index.html";
 
@@ -123,6 +128,14 @@
                         }
                     }
                 }
+            },
+            checarResposta: function (resposta_marcada) {
+                if (this.perguntas[this.indice_pergunta].resposta === resposta_marcada) {
+                    alert("Alternativa correta.");
+                } else {
+                    alert("Alternativa incorreta.");
+                }
+                this.proxima();
             }
         }
     });
